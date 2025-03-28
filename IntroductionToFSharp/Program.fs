@@ -16,6 +16,16 @@ let solve a b c =
         if D < 0. then None
         else Quadratic((((-b + sqrt(D)) / (2. * a)), ((-b - sqrt(D)) / (2. * a))))
 
+let rec sumDigitsUp num =
+    if num = 0 then 0
+    else (num % 10) + (sumDigitsUp (num / 10))
+
+let sumDigitsDown num =
+    let rec sumDigitsDownLoop num current =
+        if num = 0 then current
+        else sumDigitsDownLoop (num / 10) (current + (num % 10))
+    sumDigitsDownLoop num 0
+
 
 [<EntryPoint>]
 let main argv =
@@ -24,4 +34,8 @@ let main argv =
         None -> Console.WriteLine("There are no solutions.")
         | Linear(x) -> Console.WriteLine($"Linear equation: {x}.")
         | Quadratic(x1, x2) -> Console.WriteLine($"Quadratic equation: {x1}, {x2}.")
+    Console.Write("Enter number: ")
+    let number = Console.ReadLine() |> int
+    Console.WriteLine($"Sum of digits (used upward recursion): {sumDigitsUp number}")
+    Console.WriteLine($"Sum of digits (used downward recursion): {sumDigitsDown number}")
     0
