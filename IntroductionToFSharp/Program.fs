@@ -16,6 +16,11 @@ let solve a b c =
         if D < 0. then None
         else Quadratic((((-b + sqrt(D)) / (2. * a)), ((-b - sqrt(D)) / (2. * a))))
 
+let circle r = Math.PI * r * r
+let multiply s h = s * h
+let cylinderVolumeSuperPosition = circle >> multiply
+let cylinderVolumeCurry r h = (circle r) * h
+
 let rec sumDigitsUp num =
     if num = 0 then 0
     else (num % 10) + (sumDigitsUp (num / 10))
@@ -34,6 +39,12 @@ let main argv =
         None -> Console.WriteLine("There are no solutions.")
         | Linear(x) -> Console.WriteLine($"Linear equation: {x}.")
         | Quadratic(x1, x2) -> Console.WriteLine($"Quadratic equation: {x1}, {x2}.")
+    Console.Write("Enter radius:")
+    let r = Console.ReadLine() |> float
+    Console.Write("Enter height:")
+    let h = Console.ReadLine() |> float
+    Console.WriteLine($"Cylinder volume (superposition): {cylinderVolumeSuperPosition r h}")
+    Console.WriteLine($"Cylinder volume (curry): {cylinderVolumeCurry r h}")
     Console.Write("Enter number: ")
     let number = Console.ReadLine() |> int
     Console.WriteLine($"Sum of digits (used upward recursion): {sumDigitsUp number}")
