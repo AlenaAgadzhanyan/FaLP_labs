@@ -65,12 +65,12 @@ let find_max_odd_list (arr: int array) =
     else
         List.max odds
 
-// Задание 17 Построить приложение на F# , позволяющее пользователю решать задачу указанную задачу с применением высших функций класса List.
-let readList () =
-    System.Console.WriteLine "Введите список через пробел:"
-    System.Console.ReadLine().Split()
-    |> Array.map int
-    |> Array.toList
+// 1.46	Дан целочисленный массив. Необходимо вывести вначале его положительные элементы, а затем - отрицательные.
+let separatePositiveNegativeList (arr: int array) : int list =
+    let lst = Array.toList arr
+    let positives = List.filter (fun x -> x > 0) lst
+    let negatives = List.filter (fun x -> x <= 0) lst
+    positives @ negatives
 
 // 6. Отсортировать введенный список кортежей длины 5 по возрастанию в лексико-графическом порядке, причем в новом списке могут быть лишь
 // кортежи из цифр в итоговый список записать числовое представление получившегося кортежа, то есть список вида
@@ -80,3 +80,13 @@ let sortAndConvertToNumbers (list: (int * int * int * int * int) list) =
     |> List.filter (fun (a, b, c, d, e) -> List.forall (fun x -> x >= 0 && x <= 9) [a; b; c; d; e])
     |> List.sort
     |> List.map (fun (a, b, c, d, e) -> int (string a + string b + string c + string d + string e))
+
+// Задание 18 Решить задачу с использование класса массив.
+
+// 6. Напишите программу, которая вводит с клавиатуры два непустых неубывающих массива целых чисел, и печатает те
+// и только те элементы, которые встречаются хотя бы в одном из массивов (объединение множеств).
+let unionNonDecreasingArrays (a: int[]) (b: int[]) : int[] = 
+    let isNonDecreasing arr = arr |> Array.pairwise |> Array.forall (fun (a, b) -> a <= b)
+    if not (isNonDecreasing a || isNonDecreasing b) then
+        failwith "Массивы не являются неубывающими!"
+    b |> Array.append a |> Array.distinct
