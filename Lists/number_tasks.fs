@@ -1,4 +1,5 @@
 module NumberTasks
+open System
 
 // 1.6	Дан целочисленный массив. Необходимо осуществить циклический сдвиг элементов массива влево на три позиции.
 let rec shiftLeftThreeList list =
@@ -72,6 +73,13 @@ let separatePositiveNegativeList (arr: int array) : int list =
     let negatives = List.filter (fun x -> x <= 0) lst
     positives @ negatives
 
+// Задание 17 Построить приложение на F# , позволяющее пользователю решать задачу указанную задачу с применением высших функций класса List.
+let readList () =
+    System.Console.WriteLine "Введите список через пробел:"
+    System.Console.ReadLine().Split()
+    |> Array.map int
+    |> Array.toList
+
 // 6. Отсортировать введенный список кортежей длины 5 по возрастанию в лексико-графическом порядке, причем в новом списке могут быть лишь
 // кортежи из цифр в итоговый список записать числовое представление получившегося кортежа, то есть список вида
 // [(7,3,4,5,6),(2,3,4,6,7),(2,3,4,5,6),(4,3,10,4,5)] должен быть преобразован в список [23456,23467,73456].
@@ -90,3 +98,26 @@ let unionNonDecreasingArrays (a: int[]) (b: int[]) : int[] =
     if not (isNonDecreasing a || isNonDecreasing b) then
         failwith "Массивы не являются неубывающими!"
     b |> Array.append a |> Array.distinct
+
+// 6. Дана строка в которой записаны слова через пробел. Необходимо перемешать в каждом слове все символы в случайном порядке 
+// кроме первого и последнего.
+let shuffleWord (word: string) : string =
+    if word.Length <= 3 then
+        word
+    else
+        let firstChar = string word.[0]
+        let lastChar = string word.[word.Length - 1]
+        let middleChars = word.Substring(1, word.Length - 2).ToCharArray()
+        let rnd = Random()
+        for i = middleChars.Length - 1 downto 1 do
+            let j = rnd.Next(i + 1)
+            let temp = middleChars.[i]
+            middleChars.[i] <- middleChars.[j]
+            middleChars.[j] <- temp
+        String.Concat([| firstChar; new string(middleChars); lastChar |])
+
+let shuffleString (inputString: string) : string =
+    inputString.Split ' '
+    |> Array.map shuffleWord
+    |> Array.toList
+    |> fun words -> String.Join(" ", words)

@@ -19,5 +19,10 @@ let main argv =
     Console.WriteLine(find_max_odd_church array)
     Console.Write("List: ")
     Console.WriteLine(find_max_odd_list array)
+
+    let inputString = "This is a sample sentence to test the shuffling."
+    let shuffledString = shuffleString inputString
+    printfn "Original String: %s" inputString
+    printfn "Shuffled String: %s" shuffledString
     
     0
