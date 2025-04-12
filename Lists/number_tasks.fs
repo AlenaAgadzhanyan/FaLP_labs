@@ -1,7 +1,6 @@
 module NumberTasks
 
 // 1.6	Дан целочисленный массив. Необходимо осуществить циклический сдвиг элементов массива влево на три позиции.
-
 let rec shiftLeftThreeList list =
     let n = List.length list
     if n <= 3 then list 
@@ -39,7 +38,7 @@ let shiftLeftThreeChurch list =
         let remaining = List.skip 3 list
         remaining @ acc
 
-// 1.36	Дан целочисленный массив. Необходимо найти максимальный не-четный элемент.
+// 1.36	Дан целочисленный массив. Необходимо найти максимальный нечетный элемент.
 let find_max_odd_church (arr: int array) =
     let lst = Array.toList arr
     let rec find_max candidate lst =
@@ -65,3 +64,19 @@ let find_max_odd_list (arr: int array) =
         failwith "Нет нечётных элементов"
     else
         List.max odds
+
+// Задание 17 Построить приложение на F# , позволяющее пользователю решать задачу указанную задачу с применением высших функций класса List.
+let readList () =
+    System.Console.WriteLine "Введите список через пробел:"
+    System.Console.ReadLine().Split()
+    |> Array.map int
+    |> Array.toList
+
+// 6. Отсортировать введенный список кортежей длины 5 по возрастанию в лексико-графическом порядке, причем в новом списке могут быть лишь
+// кортежи из цифр в итоговый список записать числовое представление получившегося кортежа, то есть список вида
+// [(7,3,4,5,6),(2,3,4,6,7),(2,3,4,5,6),(4,3,10,4,5)] должен быть преобразован в список [23456,23467,73456].
+let sortAndConvertToNumbers (list: (int * int * int * int * int) list) =
+    list
+    |> List.filter (fun (a, b, c, d, e) -> List.forall (fun x -> x >= 0 && x <= 9) [a; b; c; d; e])
+    |> List.sort
+    |> List.map (fun (a, b, c, d, e) -> int (string a + string b + string c + string d + string e))

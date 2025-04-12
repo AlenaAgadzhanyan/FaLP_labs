@@ -19,4 +19,5 @@ let main argv =
     Console.WriteLine(find_max_odd_church array)
     Console.Write("List: ")
     Console.WriteLine(find_max_odd_list array)
+    
     0
