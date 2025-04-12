@@ -38,3 +38,30 @@ let shiftLeftThreeChurch list =
         let acc = take' list 3 []
         let remaining = List.skip 3 list
         remaining @ acc
+
+// 1.36	Дан целочисленный массив. Необходимо найти максимальный не-четный элемент.
+let find_max_odd_church (arr: int array) =
+    let lst = Array.toList arr
+    let rec find_max candidate lst =
+        match lst with
+        | [] -> candidate
+        | head :: tail ->
+            if head % 2 <> 0 then
+                let newCandidate =
+                    match candidate with
+                    | None -> Some head
+                    | Some cur -> Some (max head cur)
+                find_max newCandidate tail
+            else
+                find_max candidate tail
+    match find_max None lst with
+    | Some result -> result
+    | None -> failwith "Нет нечётных элементов"
+
+let find_max_odd_list (arr: int array) =
+    let lst = Array.toList arr
+    let odds = List.filter (fun x -> x % 2 <> 0) lst
+    if List.isEmpty odds then
+        failwith "Нет нечётных элементов"
+    else
+        List.max odds

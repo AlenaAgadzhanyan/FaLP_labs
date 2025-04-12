@@ -12,4 +12,11 @@ let main argv =
     printfn "Original List: %A" shiftedList1
     printfn "Shifted List (Church List): %A" shiftedList2 
 
+    let array = [| 4; 2; 5; 7; 4; 3|]
+
+    Console.WriteLine("Максимальный нечётный элемент в массиве:")
+    Console.Write("Church: ")
+    Console.WriteLine(find_max_odd_church array)
+    Console.Write("List: ")
+    Console.WriteLine(find_max_odd_list array)
     0

@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Lists")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b69caf5c682bbc424c5a2df59efe678e97bff660")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15e791f4f3e51449b4fb64b943c0c15e587034b2")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Lists")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Lists")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
