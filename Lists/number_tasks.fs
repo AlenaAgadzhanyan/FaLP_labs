@@ -121,3 +121,30 @@ let shuffleString (inputString: string) : string =
     |> Array.map shuffleWord
     |> Array.toList
     |> fun words -> String.Join(" ", words)
+
+// Задание 20. Решить задачи по вариантам. Отсортировать строки в  указанном порядке
+// 6. В порядке увеличения разницы между количеством сочетаний «гласная-согласная» и «согласная-гласная» в строке
+
+let isVowel (c: char) : bool =
+    match Char.ToLower c with
+    | 'a' | 'e' | 'i' | 'o' | 'u' | 'y' -> true
+    | _ -> false
+
+let countVowelConsonantCombinations (s: string) : (int * int) =
+    let mutable vowelConsonantCount = 0
+    let mutable consonantVowelCount = 0
+    let len = s.Length
+    if len > 1 then
+        for i = 0 to len - 2 do
+            let c1 = s.[i]
+            let c2 = s.[i+1]
+            if isVowel c1 && not (isVowel c2) then vowelConsonantCount <- vowelConsonantCount + 1
+            if not (isVowel c1) && isVowel c2 then consonantVowelCount <- consonantVowelCount + 1
+    (vowelConsonantCount, consonantVowelCount)
+
+let calculateDifference (s: string) : int =
+    let (vowelConsonantCount, consonantVowelCount) = countVowelConsonantCombinations s
+    vowelConsonantCount - consonantVowelCount
+
+let sortStringsByCombinationDifference (strings: string list) : string list =
+    List.sortBy calculateDifference strings

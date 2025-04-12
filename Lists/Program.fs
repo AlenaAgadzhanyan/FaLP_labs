@@ -25,4 +25,9 @@ let main argv =
     printfn "Original String: %s" inputString
     printfn "Shuffled String: %s" shuffledString
     
+    let strings2 = ["aa"; "ab"; "ba"; "bb"]
+    let sortedStrings2 = sortStringsByCombinationDifference strings2
+    printfn "Original Strings: %A" strings2
+    printfn "Sorted Strings: %A" sortedStrings2
+    
     0
