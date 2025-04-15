@@ -1,6 +1,8 @@
 ﻿open Figure
 open FigureDU
+open Agent
 open System
+open Agent.Agent
 
 [<EntryPoint>]
 let main argv =
@@ -28,4 +30,11 @@ let main argv =
             printfn "Круг: площадь = %f" (calculateArea figure)
     )
 
+    let agent = startAgent ()
+
+    agent.Post (Print "HELLO")
+    agent.Post Count
+    agent.Post Stop
+
+    System.Threading.Thread.Sleep(500)
     0
