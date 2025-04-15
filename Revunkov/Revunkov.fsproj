@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Include="Figure.fs" />
     <Compile Include="FigureDU.fs" />
+    <Compile Include="Agent.fs" />
+    <Compile Include="FunctorsAndMonadas.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
