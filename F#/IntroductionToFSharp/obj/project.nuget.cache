@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "1cMipNkP+MM=",
+  "success": true,
+  "projectFilePath": "c:\\Users\\Honor\\Desktop\\FaLP_labs\\IntroductionToFSharp\\IntroductionToFSharp.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Honor\\.nuget\\packages\\fsharp.core\\9.0.201\\fsharp.core.9.0.201.nupkg.sha512"
+  ],
+  "logs": []
+}
