@@ -58,3 +58,30 @@ max_digit_not_divisible_by_3_down(N, M, R) :-
     C is N mod 10,
     (C mod 3 =\= 0 -> M1 is max(M, C); M1 = M),
     max_digit_not_divisible_by_3_down(N1, M1, R).
+
+
+% count_divisors_up(+N, -C)
+
+count_divisors_up(N, Count) :-
+    count_divisors_up(N, 1, 0, Count).
+
+count_divisors_up(N, D, Acc, Count) :-
+    D =< N,
+    (N mod D =:= 0 ->
+        NewAcc is Acc + 1,
+        NextD is D + 1;
+        NewAcc is Acc,
+        NextD is D + 1),
+    count_divisors_up(N, NextD, NewAcc, Count).
+
+count_divisors_up(N, D, Count, Count) :- D > N.
+
+count_divisors_down(N, Count) :-
+    count_divisors_down(N, 1, 0, Count).
+
+count_divisors_down(N, D, Acc, Acc) :- D > N, !.
+count_divisors_down(N, D, Acc, Count) :-
+    D =< N,
+    (N mod D =:= 0 -> NewAcc is Acc + 1; NewAcc is Acc),
+    NextD is D + 1,
+    count_divisors_down(N, NextD, NewAcc, Count).
