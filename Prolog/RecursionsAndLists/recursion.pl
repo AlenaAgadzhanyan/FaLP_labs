@@ -39,3 +39,22 @@ multiply_numbers_up(N,S) :- N1 is N // 10, C is N mod 10, multiply_numbers(N1,S1
 multiply_numbers_down(N,S) :- multiply_numbers_down(N,1,S).
 multiply_numbers_down(0,S,S) :- !.
 multiply_numbers_down(N,S,R) :- N1 is N // 10, C is N mod 10, S1 is S * C, multiply_numbers_down(N1,S1,R).
+
+% max_digit_not_divisible_by_3_up(+N, -M)
+
+max_digit_not_divisible_by_3_up(0, 0) :- !.
+max_digit_not_divisible_by_3_up(N, M) :-
+    N1 is N // 10,
+    C is N mod 10,
+    max_digit_not_divisible_by_3_up(N1, M1),
+    (C mod 3 =\= 0 -> max(M1, C, M); M = M1).
+
+% max_digit_not_divisible_by_3_up(+N, -M, +R)
+
+max_digit_not_divisible_by_3_down(N, M) :- max_digit_not_divisible_by_3_down(N, 0, M).
+max_digit_not_divisible_by_3_down(0, M, M) :- !.
+max_digit_not_divisible_by_3_down(N, M, R) :-
+    N1 is N // 10,
+    C is N mod 10,
+    (C mod 3 =\= 0 -> M1 is max(M, C); M1 = M),
+    max_digit_not_divisible_by_3_down(N1, M1, R).
