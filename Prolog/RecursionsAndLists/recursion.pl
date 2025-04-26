@@ -29,3 +29,13 @@ sum_list([H|T],S) :- sum_list(T,S1), S is S1 + H.
 sum_list_down([H|T],S) :- sum_list_down([H|T],0,S).
 sum_list_down([],S,S) :- !.
 sum_list_down([H|T],S,R) :-S1 is S + H, sum_list_down(T,S1,R).
+
+% Вариант 10 
+% multiply_numbers(+N, -S)
+
+multiply_numbers_up(1,1) :- !.
+multiply_numbers_up(N,S) :- N1 is N // 10, C is N mod 10, multiply_numbers(N1,S1), S is S1 * C.
+
+multiply_numbers_down(N,S) :- multiply_numbers_down(N,1,S).
+multiply_numbers_down(0,S,S) :- !.
+multiply_numbers_down(N,S,R) :- N1 is N // 10, C is N mod 10, S1 is S * C, multiply_numbers_down(N1,S1,R).
