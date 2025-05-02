@@ -12,9 +12,23 @@ count_matches([H|T], List2, Count) :-
 count_matches([_|T], List2, Count) :-
     count_matches(T, List2, Count).
 
+% 1.34	Дан целочисленный массив и отрезок a..b. Необходимо найти элементы, значение которых принадлежит этому отрезку.
+% elements_in_interval(+List1, +a, , +b, -List2)
+
+elements_in_interval([], _, _, []).
+
+elements_in_interval([H|T], A, B, Result) :-
+    H >= A,
+    H =< B,
+    !, 
+    elements_in_interval(T, A, B, RestResult),
+    Result = [H|RestResult].
+
+elements_in_interval([_|T], A, B, Result) :-
+    elements_in_interval(T, A, B, Result).
+
 
 % 1.46	Дан целочисленный массив. Необходимо вывести вначале его положительные элементы, а затем - отрицательные.
-
 % positives_then_negatives(+List, -Result)
 
 separate_positives_and_negatives([], [], []) :- !.
